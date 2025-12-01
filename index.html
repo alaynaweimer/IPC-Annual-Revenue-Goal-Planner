@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annual Revenue Goal Planner | Ignite Positive Changes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ignite-red: #cf462e;
+            --ignite-yellow: #ffcd1d;
+            --ignite-navy: #35575f;
+            --ignite-sage: #728b8f;
+            --ignite-orange: #faa22b;
+            --ignite-cream: #fffdfc;
+            --red-dark: #b53d28;
+            --navy-light: #456a73;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --green-500: #10b981;
+            --green-100: #d1fae5;
+            --yellow-500: #f59e0b;
+            --yellow-100: #fef3c7;
+            --red-500: #ef4444;
+            --red-100: #fee2e2;
+            --blue-500: #3b82f6;
+            --blue-100: #dbeafe;
+            --purple-500: #8b5cf6;
+            --purple-100: #ede9fe;
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+            --shadow-lg: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--ignite-cream);
+            color: var(--gray-700);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: var(--ignite-navy);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img { height: 45px; }
+
+        .back-link {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .back-link:hover { color: var(--white); }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tool-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--ignite-red) 0%, var(--ignite-orange) 100%);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .tool-header h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.5rem;
+            color: var(--ignite-navy);
+            margin-bottom: 10px;
+        }
+
+        .tool-header p {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            background: var(--white);
+            padding: 8px;
+            border-radius: 16px;
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            background: transparent;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--gray-500);
+            cursor: pointer;
+        }
+
+        .tab:hover { color: var(--gray-700); background: var(--gray-50); }
+        .tab.active { background: var(--ignite-navy); color: var(--white); }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Hero Goal Section */
+        .hero-goal {
+            background: linear-gradient(135deg, var(--ignite-navy) 0%, var(--navy-light) 100%);
+            border-radius: 24px;
+            padding: 40px;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-goal::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,205,29,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .hero-amount {
+            font-family: 'Fraunces', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--ignite-yellow);
+            margin-bottom: 10px;
+        }
+
+        .hero-year {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .hero-input-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .hero-input {
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            color: var(--white);
+            width: 200px;
+            text-align: center;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .hero-input::placeholder { color: rgba(255,255,255,0.5); }
+        .hero-input:focus { outline: none; border-color: var(--ignite-yellow); }
+
+        .hero-select {
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+        }
+
+        .hero-select option { color: var(--gray-800); }
+
+        /* Progress Ring */
+        .progress-section {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .progress-section { grid-template-columns: 1fr; }
+        }
+
+        .progress-ring-container {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .progress-ring {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+        }
+
+        .progress-ring svg {
+            transform: rotate(-90deg);
+            width: 180px;
+            height: 180px;
+        }
+
+        .progress-ring circle {
+            fill: none;
+            stroke-width: 12;
+        }
+
+        .progress-ring .bg { stroke: var(--gray-200); }
+        .progress-ring .progress { 
+            stroke: var(--green-500);
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+
+        .progress-ring .progress.behind { stroke: var(--red-500); }
+        .progress-ring .progress.close { stroke: var(--yellow-500); }
+
+        .progress-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .progress-percent {
+            font-family: 'Fraunces', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--ignite-navy);
+        }
+
+        .progress-label {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        .progress-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .progress-status.ahead { background: var(--green-100); color: var(--green-500); }
+        .progress-status.on-track { background: var(--blue-100); color: var(--blue-500); }
+        .progress-status.behind { background: var(--red-100); color: var(--red-500); }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray-500);
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-family: 'Fraunces', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--ignite-navy);
+        }
+
+        .stat-sub {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            margin-top: 3px;
+        }
+
+        /* Breakdown Section */
+        .section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.3rem;
+            color: var(--ignite-navy);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Target Cards */
+        .targets-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .targets-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 500px) {
+            .targets-grid { grid-template-columns: 1fr; }
+        }
+
+        .target-card {
+            background: var(--gray-50);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid var(--gray-200);
+        }
+
+        .target-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .target-period {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-bottom: 5px;
+        }
+
+        .target-amount {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--ignite-navy);
+        }
+
+        .target-detail {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            margin-top: 5px;
+        }
+
+        /* Monthly Tracker */
+        .monthly-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        @media (max-width: 900px) {
+            .monthly-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .monthly-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .month-card {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 15px;
+            border: 2px solid var(--gray-200);
+        }
+
+        .month-card.current {
+            border-color: var(--blue-500);
+            background: var(--blue-100);
+        }
+
+        .month-card.achieved {
+            border-color: var(--green-500);
+            background: var(--green-100);
+        }
+
+        .month-card.missed {
+            border-color: var(--red-500);
+            background: var(--red-100);
+        }
+
+        .month-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+        }
+
+        .month-target {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-bottom: 5px;
+        }
+
+        .month-input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: right;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .month-input:focus {
+            outline: none;
+            border-color: var(--ignite-orange);
+        }
+
+        .month-status {
+            font-size: 0.7rem;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        .month-status.over { color: var(--green-500); }
+        .month-status.under { color: var(--red-500); }
+
+        /* Revenue Sources */
+        .sources-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--gray-100);
+        }
+
+        .source-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .source-row:last-child { border-bottom: none; }
+
+        .source-name {
+            flex: 1;
+        }
+
+        .source-name input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .source-amount input {
+            width: 120px;
+            padding: 8px 12px;
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+
+        .source-pct {
+            width: 60px;
+            text-align: right;
+            font-weight: 600;
+            color: var(--gray-600);
+        }
+
+        .add-source-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: var(--gray-100);
+            border: 2px dashed var(--gray-300);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            cursor: pointer;
+            width: 100%;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .add-source-btn:hover {
+            background: var(--gray-200);
+            border-color: var(--gray-400);
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: var(--gray-400);
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .delete-btn:hover { color: var(--red-500); }
+
+        /* Milestones */
+        .milestones-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .milestone-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: var(--gray-50);
+            border-radius: 12px;
+            border-left: 4px solid var(--gray-300);
+        }
+
+        .milestone-card.reached {
+            border-left-color: var(--green-500);
+            background: var(--green-100);
+        }
+
+        .milestone-card.next {
+            border-left-color: var(--yellow-500);
+            background: var(--yellow-100);
+        }
+
+        .milestone-icon {
+            font-size: 2rem;
+        }
+
+        .milestone-content { flex: 1; }
+
+        .milestone-amount {
+            font-family: 'Fraunces', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ignite-navy);
+        }
+
+        .milestone-label {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        .milestone-status {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .milestone-status.reached { color: var(--green-500); }
+        .milestone-status.remaining { color: var(--gray-500); }
+
+        /* Learn Tab */
+        .learn-content-wrapper { max-width: 900px; margin: 0 auto; }
+
+        .why-section {
+            background: linear-gradient(135deg, var(--ignite-navy) 0%, var(--navy-light) 100%);
+            border-radius: 20px;
+            padding: 35px 40px;
+            margin-bottom: 30px;
+            color: var(--white);
+        }
+
+        .why-section h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .why-section p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--gray-300);
+            margin-bottom: 15px;
+        }
+
+        .why-section strong { color: var(--ignite-yellow); }
+
+        .concept-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .concept-section h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.4rem;
+            color: var(--ignite-navy);
+            margin-bottom: 20px;
+        }
+
+        .formula-box {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .formula {
+            font-family: 'Fraunces', serif;
+            font-size: 1.2rem;
+            color: var(--ignite-navy);
+            margin-bottom: 10px;
+        }
+
+        .formula-desc {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
+        .pro-tips {
+            background: linear-gradient(135deg, var(--ignite-cream) 0%, #fff 100%);
+            border: 2px solid var(--ignite-yellow);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .pro-tips h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.2rem;
+            color: var(--ignite-navy);
+            margin-bottom: 20px;
+        }
+
+        .pro-tips ul { list-style: none; }
+
+        .pro-tips li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .pro-tips li:last-child { border-bottom: none; }
+        .pro-tips li::before { content: '💡'; position: absolute; left: 0; }
+
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            border-top: 1px solid var(--gray-200);
+            margin-top: 50px;
+        }
+
+        .footer-brand { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 8px; }
+        .footer-brand a { color: var(--ignite-navy); text-decoration: none; font-weight: 600; }
+        .footer-copyright { font-size: 0.75rem; color: var(--gray-400); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <img src="YOUR-LOGO-URL-HERE" alt="Ignite Positive Changes" class="logo-img">
+        </div>
+        <a href="javascript:history.back()" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Toolkit
+        </a>
+    </header>
+
+    <div class="container">
+        <div class="tool-header">
+            <div class="tool-badge">Pro Tool</div>
+            <h1>Annual Revenue Goal Planner</h1>
+            <p>Set your annual revenue goal, break it down into actionable targets, and track your progress throughout the year.</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('planner')">
+                <span>🎯</span> Goal Planner
+            </button>
+            <button class="tab" onclick="switchTab('tracker')">
+                <span>📊</span> Monthly Tracker
+            </button>
+            <button class="tab" onclick="switchTab('learn')">
+                <span>📚</span> Learn
+            </button>
+        </div>
+
+        <div id="planner-tab" class="tab-content active">
+            
+            <!-- Hero Goal -->
+            <div class="hero-goal">
+                <div class="hero-label">Your Annual Revenue Goal</div>
+                <div class="hero-amount" id="heroAmount">$150,000</div>
+                <div class="hero-year" id="heroYear">2025 Goal</div>
+                <div class="hero-input-row">
+                    <input type="text" class="hero-input" id="annualGoal" placeholder="$150,000" oninput="formatAmount(this); calculateAll()">
+                    <select class="hero-select" id="goalYear" onchange="calculateAll()">
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-ring-container">
+                    <div class="progress-ring">
+                        <svg viewBox="0 0 180 180">
+                            <circle class="bg" cx="90" cy="90" r="78"/>
+                            <circle class="progress" id="progressCircle" cx="90" cy="90" r="78" 
+                                stroke-dasharray="490" stroke-dashoffset="490"/>
+                        </svg>
+                        <div class="progress-center">
+                            <div class="progress-percent" id="progressPercent">0%</div>
+                            <div class="progress-label">of goal</div>
+                        </div>
+                    </div>
+                    <div class="progress-status on-track" id="progressStatus">On Track</div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">YTD Revenue</div>
+                        <div class="stat-value" id="ytdRevenue">$0</div>
+                        <div class="stat-sub">earned so far</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Remaining</div>
+                        <div class="stat-value" id="remainingAmount">$0</div>
+                        <div class="stat-sub">to reach goal</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Expected Pace</div>
+                        <div class="stat-value" id="expectedPace">$0</div>
+                        <div class="stat-sub">should have by now</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Gap/Surplus</div>
+                        <div class="stat-value" id="gapSurplus">$0</div>
+                        <div class="stat-sub" id="gapLabel">vs expected</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Targets Breakdown -->
+            <div class="section">
+                <h2 class="section-title">📅 Target Breakdown</h2>
+                
+                <div class="targets-grid">
+                    <div class="target-card">
+                        <div class="target-icon">📆</div>
+                        <div class="target-period">Monthly Target</div>
+                        <div class="target-amount" id="monthlyTarget">$0</div>
+                        <div class="target-detail">average per month</div>
+                    </div>
+                    <div class="target-card">
+                        <div class="target-icon">📅</div>
+                        <div class="target-period">Weekly Target</div>
+                        <div class="target-amount" id="weeklyTarget">$0</div>
+                        <div class="target-detail">52 weeks</div>
+                    </div>
+                    <div class="target-card">
+                        <div class="target-icon">🗓️</div>
+                        <div class="target-period">Daily Target</div>
+                        <div class="target-amount" id="dailyTarget">$0</div>
+                        <div class="target-detail">business days</div>
+                    </div>
+                    <div class="target-card">
+                        <div class="target-icon">👥</div>
+                        <div class="target-period">Per Client Need</div>
+                        <div class="target-amount" id="perClientNeed">$0</div>
+                        <div class="target-detail" id="clientCountLabel">if 5 clients</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 25px; display: flex; align-items: center; gap: 15px;">
+                    <label style="font-size: 0.9rem; color: var(--gray-600);">Average client count:</label>
+                    <input type="number" id="avgClients" value="5" min="1" max="100" 
+                        style="width: 80px; padding: 8px 12px; border: 2px solid var(--gray-200); border-radius: 8px;"
+                        onchange="calculateAll()">
+                </div>
+            </div>
+
+            <!-- Revenue Sources -->
+            <div class="section">
+                <h2 class="section-title">💰 Revenue Sources</h2>
+                <p style="color: var(--gray-500); margin-bottom: 20px;">Break down your goal by revenue stream to see how each contributes.</p>
+                
+                <div id="sourcesContainer"></div>
+                
+                <button class="add-source-btn" onclick="addSource()">
+                    + Add Revenue Source
+                </button>
+
+                <div style="margin-top: 20px; padding: 15px; background: var(--blue-100); border-radius: 10px; display: flex; justify-content: space-between;">
+                    <span style="font-weight: 600; color: var(--blue-500);">Total from Sources</span>
+                    <span style="font-weight: 700; color: var(--blue-500);" id="sourcesTotal">$0</span>
+                </div>
+            </div>
+
+            <!-- Milestones -->
+            <div class="section">
+                <h2 class="section-title">🏆 Milestones</h2>
+                
+                <div class="milestones-list" id="milestonesList">
+                    <!-- Generated dynamically -->
+                </div>
+            </div>
+
+        </div>
+
+        <div id="tracker-tab" class="tab-content">
+            
+            <div class="section">
+                <h2 class="section-title">📊 Monthly Revenue Tracker</h2>
+                <p style="color: var(--gray-500); margin-bottom: 20px;">Enter your actual revenue each month to track progress against your goal.</p>
+                
+                <div class="monthly-grid" id="monthlyGrid">
+                    <!-- Generated dynamically -->
+                </div>
+
+                <div style="margin-top: 25px; padding: 20px; background: var(--gray-50); border-radius: 12px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                        <span style="color: var(--gray-600);">Total Actual Revenue</span>
+                        <span style="font-weight: 700; color: var(--ignite-navy);" id="totalActual">$0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                        <span style="color: var(--gray-600);">Total Target (YTD)</span>
+                        <span style="font-weight: 600; color: var(--gray-600);" id="totalTargetYTD">$0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding-top: 15px; border-top: 2px solid var(--gray-200);">
+                        <span style="font-weight: 600; color: var(--gray-700);">Variance</span>
+                        <span style="font-weight: 700;" id="variance">$0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projection -->
+            <div class="section">
+                <h2 class="section-title">🔮 Year-End Projection</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                    <div style="background: var(--gray-50); padding: 25px; border-radius: 16px; text-align: center;">
+                        <div style="font-size: 0.8rem; color: var(--gray-500); margin-bottom: 5px;">If Current Pace Continues</div>
+                        <div style="font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 700; color: var(--ignite-navy);" id="projectedTotal">$0</div>
+                        <div style="font-size: 0.85rem; margin-top: 5px;" id="projectedVsGoal">$0 vs goal</div>
+                    </div>
+                    <div style="background: var(--gray-50); padding: 25px; border-radius: 16px; text-align: center;">
+                        <div style="font-size: 0.8rem; color: var(--gray-500); margin-bottom: 5px;">Monthly Avg Needed</div>
+                        <div style="font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 700; color: var(--ignite-navy);" id="avgNeeded">$0</div>
+                        <div style="font-size: 0.85rem; color: var(--gray-500); margin-top: 5px;">for remaining months</div>
+                    </div>
+                    <div style="background: var(--gray-50); padding: 25px; border-radius: 16px; text-align: center;">
+                        <div style="font-size: 0.8rem; color: var(--gray-500); margin-bottom: 5px;">Months Remaining</div>
+                        <div style="font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 700; color: var(--ignite-navy);" id="monthsRemaining">12</div>
+                        <div style="font-size: 0.85rem; color: var(--gray-500); margin-top: 5px;">to hit your goal</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="learn-tab" class="tab-content">
+            <div class="learn-content-wrapper">
+                <div class="why-section">
+                    <h2>🎯 Why Set Revenue Goals?</h2>
+                    <p><strong>"A goal without a plan is just a wish."</strong> Setting a clear annual revenue goal gives you direction, helps you make decisions, and provides a benchmark for measuring success.</p>
+                    <p>Breaking it down into monthly and weekly targets makes the big number feel achievable and helps you course-correct early when you're falling behind.</p>
+                </div>
+
+                <div class="concept-section">
+                    <h2>🧮 Setting Your Goal</h2>
+                    
+                    <div class="formula-box">
+                        <div class="formula">Desired Income + Taxes + Business Expenses = Revenue Goal</div>
+                        <div class="formula-desc">Start with what you need, not what sounds impressive</div>
+                    </div>
+
+                    <p style="margin-top: 20px;">Consider these factors when setting your goal:</p>
+                    
+                    <div style="display: grid; gap: 15px; margin-top: 15px;">
+                        <div style="display: flex; gap: 15px; align-items: start;">
+                            <span style="font-size: 1.2rem;">💵</span>
+                            <div>
+                                <strong>Desired Owner's Pay</strong> — What do you want to take home after taxes?
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 15px; align-items: start;">
+                            <span style="font-size: 1.2rem;">🏛️</span>
+                            <div>
+                                <strong>Tax Obligations</strong> — Federal, state, self-employment (budget 25-35% of profit)
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 15px; align-items: start;">
+                            <span style="font-size: 1.2rem;">💼</span>
+                            <div>
+                                <strong>Business Expenses</strong> — Team, tools, rent, insurance, marketing, etc.
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 15px; align-items: start;">
+                            <span style="font-size: 1.2rem;">📈</span>
+                            <div>
+                                <strong>Growth Investment</strong> — What do you want to reinvest in the business?
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-section">
+                    <h2>📊 Tracking Methods</h2>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                        <div style="background: var(--green-100); padding: 20px; border-radius: 12px;">
+                            <h4 style="color: var(--green-500); margin-bottom: 10px;">📈 Cumulative Tracking</h4>
+                            <p style="font-size: 0.9rem; color: var(--gray-600);">Compare total YTD revenue against where you should be. Best for seeing overall progress.</p>
+                        </div>
+                        <div style="background: var(--blue-100); padding: 20px; border-radius: 12px;">
+                            <h4 style="color: var(--blue-500); margin-bottom: 10px;">📅 Monthly Tracking</h4>
+                            <p style="font-size: 0.9rem; color: var(--gray-600);">Compare each month to target. Best for identifying trends and seasonality.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pro-tips">
+                    <h3>💡 Pro Tips</h3>
+                    <ul>
+                        <li><strong>Set a stretch goal AND a minimum.</strong> Your stretch goal motivates; your minimum ensures survival.</li>
+                        <li><strong>Account for seasonality.</strong> Not every month will be equal — plan for slow seasons.</li>
+                        <li><strong>Review monthly, not daily.</strong> Revenue fluctuates; monthly trends matter more than daily noise.</li>
+                        <li><strong>Break it down by client.</strong> Know exactly how many clients at what rate you need.</li>
+                        <li><strong>Celebrate milestones.</strong> Hitting 25%, 50%, 75% of goal is worth recognizing.</li>
+                        <li><strong>Adjust mid-year if needed.</strong> Goals should be ambitious but achievable — adjust if circumstances change.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-brand">Part of the <a href="#">Ignite Positive Changes Business Toolkit</a></div>
+        <div class="footer-copyright">© 2025 Discover Your Success with Alayna Marie | Built for Ignite Positive Changes Fractional</div>
+    </footer>
+
+    <script>
+        const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        let sources = [];
+        let monthlyActuals = new Array(12).fill(0);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+            initMonthlyGrid();
+            if (sources.length === 0) {
+                addSource('Client Retainers', 0);
+                addSource('Project Work', 0);
+            }
+            calculateAll();
+        });
+
+        function formatAmount(input) {
+            let value = input.value.replace(/[^0-9.]/g, '');
+            if (value) {
+                const num = parseFloat(value);
+                if (!isNaN(num)) {
+                    input.value = '$' + num.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                }
+            }
+        }
+
+        function parseAmount(str) {
+            if (!str) return 0;
+            return parseFloat(str.replace(/[^0-9.]/g, '')) || 0;
+        }
+
+        function formatMoney(num) {
+            const prefix = num < 0 ? '-$' : '$';
+            return prefix + Math.abs(Math.round(num)).toLocaleString('en-US');
+        }
+
+        function initMonthlyGrid() {
+            const container = document.getElementById('monthlyGrid');
+            const currentMonth = new Date().getMonth();
+            
+            let html = '';
+            MONTHS.forEach((month, i) => {
+                const isCurrent = i === currentMonth;
+                html += `
+                    <div class="month-card ${isCurrent ? 'current' : ''}" id="monthCard${i}">
+                        <div class="month-name">${month}</div>
+                        <div class="month-target" id="monthTarget${i}">Target: $0</div>
+                        <input type="text" class="month-input" id="monthActual${i}" 
+                            placeholder="$0" 
+                            oninput="formatAmount(this); updateMonthly(${i})">
+                        <div class="month-status" id="monthStatus${i}"></div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+
+            // Restore saved values
+            monthlyActuals.forEach((val, i) => {
+                if (val > 0) {
+                    document.getElementById('monthActual' + i).value = formatMoney(val);
+                }
+            });
+        }
+
+        function updateMonthly(monthIndex) {
+            const value = parseAmount(document.getElementById('monthActual' + monthIndex).value);
+            monthlyActuals[monthIndex] = value;
+            calculateAll();
+            saveData();
+        }
+
+        function addSource(name = '', amount = 0) {
+            sources.push({
+                id: Date.now(),
+                name: name || 'New Source',
+                amount: amount
+            });
+            renderSources();
+            saveData();
+        }
+
+        function deleteSource(id) {
+            sources = sources.filter(s => s.id !== id);
+            renderSources();
+            calculateAll();
+            saveData();
+        }
+
+        function updateSource(id, field, value) {
+            const source = sources.find(s => s.id === id);
+            if (source) {
+                source[field] = field === 'amount' ? parseAmount(value) : value;
+                calculateAll();
+                saveData();
+            }
+        }
+
+        function renderSources() {
+            const container = document.getElementById('sourcesContainer');
+            const goal = parseAmount(document.getElementById('annualGoal').value);
+
+            let html = '';
+            sources.forEach(s => {
+                const pct = goal > 0 ? (s.amount / goal * 100).toFixed(0) : 0;
+                html += `
+                    <div class="source-row">
+                        <div class="source-name">
+                            <input type="text" value="${s.name}" 
+                                onchange="updateSource(${s.id}, 'name', this.value)">
+                        </div>
+                        <div class="source-amount">
+                            <input type="text" value="${s.amount > 0 ? formatMoney(s.amount) : ''}" 
+                                placeholder="$0"
+                                oninput="formatAmount(this)"
+                                onchange="updateSource(${s.id}, 'amount', this.value)">
+                        </div>
+                        <div class="source-pct">${pct}%</div>
+                        <button class="delete-btn" onclick="deleteSource(${s.id})">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+
+            const total = sources.reduce((sum, s) => sum + s.amount, 0);
+            document.getElementById('sourcesTotal').textContent = formatMoney(total);
+        }
+
+        function calculateAll() {
+            const goal = parseAmount(document.getElementById('annualGoal').value);
+            const year = document.getElementById('goalYear').value;
+            const avgClients = parseInt(document.getElementById('avgClients').value) || 5;
+
+            // Update hero
+            document.getElementById('heroAmount').textContent = formatMoney(goal);
+            document.getElementById('heroYear').textContent = year + ' Goal';
+
+            // Calculate targets
+            const monthly = goal / 12;
+            const weekly = goal / 52;
+            const daily = goal / 260; // Business days
+            const perClient = goal / avgClients;
+
+            document.getElementById('monthlyTarget').textContent = formatMoney(monthly);
+            document.getElementById('weeklyTarget').textContent = formatMoney(weekly);
+            document.getElementById('dailyTarget').textContent = formatMoney(daily);
+            document.getElementById('perClientNeed').textContent = formatMoney(perClient);
+            document.getElementById('clientCountLabel').textContent = `if ${avgClients} clients`;
+
+            // Calculate progress
+            const ytdRevenue = monthlyActuals.reduce((sum, val) => sum + val, 0);
+            const currentMonth = new Date().getMonth();
+            const dayOfMonth = new Date().getDate();
+            const daysInMonth = new Date(new Date().getFullYear(), currentMonth + 1, 0).getDate();
+            const monthProgress = currentMonth + (dayOfMonth / daysInMonth);
+            const expectedPace = goal * (monthProgress / 12);
+            const remaining = Math.max(0, goal - ytdRevenue);
+            const gapSurplus = ytdRevenue - expectedPace;
+            const progressPct = goal > 0 ? (ytdRevenue / goal * 100) : 0;
+
+            document.getElementById('ytdRevenue').textContent = formatMoney(ytdRevenue);
+            document.getElementById('remainingAmount').textContent = formatMoney(remaining);
+            document.getElementById('expectedPace').textContent = formatMoney(expectedPace);
+            document.getElementById('gapSurplus').textContent = (gapSurplus >= 0 ? '+' : '') + formatMoney(gapSurplus);
+            document.getElementById('gapSurplus').style.color = gapSurplus >= 0 ? 'var(--green-500)' : 'var(--red-500)';
+            document.getElementById('progressPercent').textContent = progressPct.toFixed(0) + '%';
+
+            // Update progress ring
+            const circumference = 2 * Math.PI * 78;
+            const offset = circumference - (progressPct / 100 * circumference);
+            const progressCircle = document.getElementById('progressCircle');
+            progressCircle.style.strokeDashoffset = Math.max(0, offset);
+            
+            // Progress status
+            const statusEl = document.getElementById('progressStatus');
+            const expectedPct = (monthProgress / 12) * 100;
+            if (progressPct >= expectedPct + 5) {
+                statusEl.textContent = '🚀 Ahead of Pace!';
+                statusEl.className = 'progress-status ahead';
+                progressCircle.classList.remove('behind', 'close');
+            } else if (progressPct >= expectedPct - 5) {
+                statusEl.textContent = '✓ On Track';
+                statusEl.className = 'progress-status on-track';
+                progressCircle.classList.remove('behind');
+                progressCircle.classList.add('close');
+            } else {
+                statusEl.textContent = '⚠️ Behind Pace';
+                statusEl.className = 'progress-status behind';
+                progressCircle.classList.add('behind');
+            }
+
+            // Update monthly targets
+            MONTHS.forEach((_, i) => {
+                document.getElementById('monthTarget' + i).textContent = 'Target: ' + formatMoney(monthly);
+                
+                const actual = monthlyActuals[i];
+                const statusEl = document.getElementById('monthStatus' + i);
+                const cardEl = document.getElementById('monthCard' + i);
+                
+                if (actual > 0) {
+                    const diff = actual - monthly;
+                    if (diff >= 0) {
+                        statusEl.textContent = '+' + formatMoney(diff);
+                        statusEl.className = 'month-status over';
+                        if (i !== currentMonth) cardEl.className = 'month-card achieved';
+                    } else {
+                        statusEl.textContent = formatMoney(diff);
+                        statusEl.className = 'month-status under';
+                        if (i < currentMonth) cardEl.className = 'month-card missed';
+                    }
+                } else {
+                    statusEl.textContent = '';
+                    if (i === currentMonth) {
+                        cardEl.className = 'month-card current';
+                    } else if (i < currentMonth) {
+                        cardEl.className = 'month-card missed';
+                    } else {
+                        cardEl.className = 'month-card';
+                    }
+                }
+            });
+
+            // Tracker tab calculations
+            const monthsWithData = monthlyActuals.filter(v => v > 0).length;
+            const avgMonthly = monthsWithData > 0 ? ytdRevenue / monthsWithData : 0;
+            const projectedTotal = avgMonthly * 12;
+            const monthsRemaining = 12 - currentMonth;
+            const avgNeeded = monthsRemaining > 0 ? remaining / monthsRemaining : 0;
+            
+            const targetYTD = monthly * (currentMonth + 1);
+            const variance = ytdRevenue - targetYTD;
+
+            document.getElementById('totalActual').textContent = formatMoney(ytdRevenue);
+            document.getElementById('totalTargetYTD').textContent = formatMoney(targetYTD);
+            document.getElementById('variance').textContent = (variance >= 0 ? '+' : '') + formatMoney(variance);
+            document.getElementById('variance').style.color = variance >= 0 ? 'var(--green-500)' : 'var(--red-500)';
+
+            document.getElementById('projectedTotal').textContent = formatMoney(projectedTotal);
+            const projDiff = projectedTotal - goal;
+            document.getElementById('projectedVsGoal').textContent = (projDiff >= 0 ? '+' : '') + formatMoney(projDiff) + ' vs goal';
+            document.getElementById('projectedVsGoal').style.color = projDiff >= 0 ? 'var(--green-500)' : 'var(--red-500)';
+            
+            document.getElementById('avgNeeded').textContent = formatMoney(avgNeeded);
+            document.getElementById('monthsRemaining').textContent = monthsRemaining;
+
+            // Update milestones
+            updateMilestones(goal, ytdRevenue);
+
+            // Update sources display
+            renderSources();
+
+            saveData();
+        }
+
+        function updateMilestones(goal, ytdRevenue) {
+            const milestones = [
+                { pct: 25, label: 'First Quarter', icon: '🌱' },
+                { pct: 50, label: 'Halfway There!', icon: '⚡' },
+                { pct: 75, label: 'Three Quarters', icon: '🔥' },
+                { pct: 100, label: 'Goal Reached!', icon: '🏆' }
+            ];
+
+            const container = document.getElementById('milestonesList');
+            let html = '';
+            let nextFound = false;
+
+            milestones.forEach(m => {
+                const amount = goal * (m.pct / 100);
+                const reached = ytdRevenue >= amount;
+                const isNext = !reached && !nextFound;
+                if (isNext) nextFound = true;
+
+                const remaining = amount - ytdRevenue;
+
+                html += `
+                    <div class="milestone-card ${reached ? 'reached' : isNext ? 'next' : ''}">
+                        <div class="milestone-icon">${m.icon}</div>
+                        <div class="milestone-content">
+                            <div class="milestone-amount">${formatMoney(amount)}</div>
+                            <div class="milestone-label">${m.pct}% — ${m.label}</div>
+                        </div>
+                        <div class="milestone-status ${reached ? 'reached' : 'remaining'}">
+                            ${reached ? '✓ Reached!' : formatMoney(remaining) + ' to go'}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function saveData() {
+            const data = {
+                annualGoal: document.getElementById('annualGoal').value,
+                goalYear: document.getElementById('goalYear').value,
+                avgClients: document.getElementById('avgClients').value,
+                sources: sources,
+                monthlyActuals: monthlyActuals
+            };
+            localStorage.setItem('annualRevenuePlanner', JSON.stringify(data));
+        }
+
+        function loadData() {
+            const saved = localStorage.getItem('annualRevenuePlanner');
+            if (!saved) return;
+
+            const data = JSON.parse(saved);
+            
+            if (data.annualGoal) document.getElementById('annualGoal').value = data.annualGoal;
+            if (data.goalYear) document.getElementById('goalYear').value = data.goalYear;
+            if (data.avgClients) document.getElementById('avgClients').value = data.avgClients;
+            if (data.sources) sources = data.sources;
+            if (data.monthlyActuals) monthlyActuals = data.monthlyActuals;
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+            event.target.closest('.tab').classList.add('active');
+        }
+    </script>
+</body>
+</html>
